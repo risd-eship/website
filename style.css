@@ -1,0 +1,760 @@
+/* ==========================================
+   FONTS
+========================================== */
+
+@font-face{
+  font-family:'Monument Grotesk';
+  src:url('fonts/MonumentGrotesk-Regular.ttf') format('truetype');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:'Monument Grotesk';
+  src:url('fonts/MonumentGrotesk-Medium.ttf') format('truetype');
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:'Monument Grotesk';
+  src:url('fonts/MonumentGrotesk-Bold.ttf') format('truetype');
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+
+
+/* ==========================================
+   COLORS
+========================================== */
+
+:root{
+  --pink:#8dd1f9;
+  --gray:#e7e4dd;
+  --terracotta:#009BFF;
+  --olive:#877542;
+
+  --paper:#ebebeb;
+  --ink:#1c1a15;
+  --ink-soft:#4a463d;
+  --line:rgba(28,26,21,0.14);
+}
+
+
+/* ==========================================
+   BASE
+========================================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Monument Grotesk', sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{
+  color:inherit;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+header{
+  display:grid;
+
+  grid-template-columns:
+    1fr
+    0.2fr
+    0.3fr;
+
+  align-items:start;
+
+  padding:38px 40px 6px;
+  gap:5px;
+
+  flex-wrap:wrap;
+
+  background:var(--paper);
+
+  position:relative;
+  z-index:200;
+}
+
+
+/* ---------- Logo ---------- */
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:2px;
+}
+
+.logo svg{
+  height:52px;
+  width:auto;
+  display:block;
+}
+
+
+/* ---------- About button ---------- */
+
+.about-btn{
+  display:inline-block;
+
+  font-family:'Monument Grotesk', sans-serif;
+  font-size:22px;
+  font-weight:600;
+  line-height:1.5;
+
+  text-decoration:none;
+
+  color:#9C9C9C;
+
+  cursor:pointer;
+  align-self:flex-start;
+
+  transition:
+    transform .25s cubic-bezier(.4,0,.2,1),
+    background .25s ease,
+    color .25s ease;
+}
+
+.about-btn:hover{
+  transform:translateY(-2px);
+  color:var(--ink);
+}
+
+.about-btn:active{
+  transform:translateY(0);
+}
+
+/* ---------- Team button ---------- */
+
+.team-btn{
+  display:inline-block;
+
+  font-family:'Monument Grotesk', sans-serif;
+  font-size:22px;
+  font-weight:600;
+  line-height:1.5;
+
+  text-decoration:none;
+
+  color:#9C9C9C;
+
+  cursor:pointer;
+  align-self:flex-start;
+
+  transition:
+    transform .25s cubic-bezier(.4,0,.2,1),
+    background .25s ease,
+    color .25s ease;
+}
+
+.team-btn:hover{
+  transform:translateY(-2px);
+  color:var(--ink);
+}
+
+.team-btn:active{
+  transform:translateY(0);
+}
+
+
+/* ==========================================
+   MAIN / CARD STACK
+========================================== */
+
+main{
+  position:relative;
+
+  padding:70px 20px 60px;
+
+  width:100%;
+  overflow-x:clip;
+}
+
+.stack{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+}
+
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.card{
+  position:relative;
+
+  width:calc(100% + 80px);
+  margin-left:-40px;
+
+  background:var(--c-bg);
+
+  cursor:pointer;
+
+  box-shadow:
+    0 1px 1px rgba(0,0,0,.06),
+    0 10px 24px -10px rgba(20,18,14,.35),
+    0 2px 0 rgba(0,0,0,.05);
+
+  transform:
+    rotate(var(--tilt))
+    translateX(var(--shift));
+
+  transform-origin:center top;
+
+  transition:
+    transform .4s cubic-bezier(.4,0,.2,1),
+    box-shadow .4s ease,
+    margin-top .4s cubic-bezier(.4,0,.2,1),
+    z-index 0s;
+}
+
+
+/* ---------- Card top edge ---------- */
+
+.card::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+
+  height:6px;
+
+  pointer-events:none;
+}
+
+
+/* ---------- Individual card positions ---------- */
+
+.card:nth-child(1){
+  --tilt:-1.4deg;
+  --shift:-6px;
+  z-index:4;
+}
+
+.card:nth-child(2){
+  --tilt:1deg;
+  --shift:10px;
+  z-index:5;
+}
+
+.card:nth-child(3){
+  --tilt:-0.8deg;
+  --shift:-4px;
+  z-index:6;
+}
+
+.card:nth-child(4){
+  --tilt:1.3deg;
+  --shift:8px;
+  z-index:7;
+}
+
+
+/* ---------- Hover / open ---------- */
+
+.card:hover{
+  transform:
+    rotate(calc(var(--tilt) * .4))
+    translateX(0)
+    translateY(-4px);
+}
+
+.card.open{
+  height:auto;
+  overflow:visible;
+
+  transform:
+    rotate(0deg)
+    translateX(0);
+
+  z-index:50 !important;
+}
+
+.card.open:hover{
+  transform:
+    rotate(0deg)
+    translateX(0);
+}
+
+
+/* ---------- Closed cards ---------- */
+
+.card:not(.open){
+  height:300px;
+  overflow:hidden;
+}
+
+
+/* ---------- Always-open final card ---------- */
+
+.card[data-always-open]{
+  height:auto;
+  overflow:visible;
+}
+
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.card-head{
+  display:grid;
+
+  grid-template-columns:
+    1.4fr
+    .5fr
+    1fr;
+
+  gap:10px;
+
+  align-items:start;
+
+  padding:32px 60px 20px;
+}
+
+
+.title-wrap{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+
+.card-title{
+  margin:0;
+
+  font-family:'Monument Grotesk', sans-serif;
+  font-weight:700;
+
+  font-size:clamp(30px,3.4vw,42px);
+  line-height:1.05;
+
+  letter-spacing:-.01em;
+
+  color:var(--c-fg);
+}
+
+
+.card-date{
+  font-family:'Monument Grotesk', sans-serif;
+
+  font-size:20px;
+  font-weight:600;
+  line-height:1.1;
+
+  color:var(--c-fg);
+}
+
+
+.card-head-right{
+  font-size:20px;
+  font-weight:600;
+  line-height:1.1;
+
+  color:var(--c-fg);
+}
+
+
+/* ==========================================
+   CARD BODY
+========================================== */
+
+.card-body-inner{
+  gap:10px;
+  color:var(--c-fg);
+}
+
+.card-body-inner p{
+  margin:0 0 10px;
+
+  max-width:100ch;
+
+  font-size:30px;
+  font-weight:600;
+  line-height:1.1;
+
+  color:var(--c-fg);
+}
+
+.card-body-inner p:last-child{
+  margin-bottom:40px;
+}
+
+
+/* ==========================================
+   CAROUSELS
+========================================== */
+
+.card-carousels{
+  display:flex;
+  flex-direction:column;
+
+  gap:36px;
+
+  padding:4px 60px 50px;
+}
+
+
+.carousel{
+  max-width:100%;
+}
+
+
+.carousel-label{
+  margin-bottom:30px;
+
+  font-family:'Monument Grotesk', sans-serif;
+
+  font-size:30px;
+  font-weight:600;
+
+  letter-spacing:.04em;
+
+  color:var(--c-fg);
+}
+
+
+/* ---------- Viewport ---------- */
+
+.carousel-viewport{
+  position:relative;
+
+  height:500px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+
+  cursor:grab;
+  user-select:none;
+}
+
+.carousel-viewport::-webkit-scrollbar{
+  display:none;
+}
+
+.carousel-viewport.dragging{
+  cursor:grabbing;
+}
+
+
+/* ---------- Track ---------- */
+
+.carousel-track{
+  display:flex;
+
+  gap:8px;
+
+  height:100%;
+}
+
+
+/* ---------- Slides ---------- */
+
+.carousel-slide{
+  flex:0 0 auto;
+
+  height:100%;
+
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:var(--c-bg);
+}
+
+
+/* ---------- Real images ---------- */
+
+.carousel-slide img{
+  height:100%;
+  width:auto;
+
+  display:block;
+
+  object-fit:cover;
+
+  pointer-events:none;
+}
+
+
+/* ---------- Coming Soon placeholder ---------- */
+
+.carousel-slide img.placeholder-image{
+  width:60%;
+  height:60%;
+
+  object-fit:contain;
+}
+
+
+/* ---------- Slight image variation ---------- */
+
+.carousel-slide:nth-child(1n){
+  filter:brightness(1.08);
+}
+
+.carousel-slide:nth-child(2n){
+  filter:brightness(.9);
+}
+
+.carousel-slide:nth-child(3n){
+  filter:brightness(1.08);
+}
+
+
+/* ---------- Get Involved Links ---------- */
+
+.get-involved-links{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+
+  padding:60px;
+  padding-top:20px;
+}
+
+.involved-link{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+
+  padding:0px 0px;
+
+  font-family:'Monument Grotesk', sans-serif;
+  font-size:50px;
+  font-weight:600;
+
+  color:#f3f1e6;
+  text-decoration:none;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.involved-link::after{
+  content:"↗";
+}
+
+.involved-link:hover{
+  color:#909090;
+}
+
+
+/* ==========================================
+   CARD COLORS
+========================================== */
+
+.c-pink{
+  --c-bg:var(--pink);
+  --c-fg:#000000;
+  --c-fg-soft:#7a3549;
+}
+
+.c-gray{
+  --c-bg:var(--gray);
+  --c-fg:#000000;
+  --c-fg-soft:#5c574a;
+}
+
+.c-terracotta{
+  --c-bg:var(--terracotta);
+  --c-fg:#f3f1e6;
+  --c-fg-soft:#3b1c10;
+}
+
+.c-terracotta .carousel-slide img.placeholder-image{
+  filter: invert(1);
+}
+
+.c-olive{
+  --c-bg:var(--olive);
+  --c-fg:#f3f1e6;
+  --c-fg-soft:#d8d4bf;
+}
+
+.c-olive .carousel-slide img.placeholder-image{
+  filter: invert(1);
+}
+
+
+/* ==========================================
+   STACK CAP
+========================================== */
+
+.stack-cap{
+  position:relative;
+
+  width:calc(100% + 80px);
+  margin-left:-40px;
+
+  height:56px;
+
+  background:var(--paper);
+
+  transition:
+    margin-top .4s cubic-bezier(.4,0,.2,1);
+
+  z-index:11;
+}
+
+.stack-cap::before{
+  content:"";
+
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+
+  height:6px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0,0,0,.08),
+      transparent
+    );
+
+  pointer-events:none;
+}
+
+
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width:760px){
+
+  header{
+    padding:26px 20px 20px;
+  }
+
+
+  main{
+    padding:50px 0;
+  }
+
+
+  /* ---------- Cards ---------- */
+
+  .card{
+    width:calc(100% + 60px);
+    margin-left:-30px;
+
+    --shift:0px;
+  }
+
+  .card:not(.open){
+    height:200px;
+  }
+
+
+  .card-head{
+    grid-template-columns:1fr;
+
+    padding:18px 44px 50px;
+
+    gap:30px;
+  }
+
+
+  /* ---------- Carousel ---------- */
+
+  .card-carousels{
+    padding:4px 44px 20px;
+
+    gap:26px;
+  }
+
+  .carousel{
+    max-width:100%;
+  }
+
+  .carousel-viewport{
+    height:300px;
+  }
+
+.carousel-label{
+  margin-bottom:30px;
+
+  font-family:'Monument Grotesk', sans-serif;
+
+  font-size:20px;
+  font-weight:600;
+
+  letter-spacing:.04em;
+
+  color:var(--c-fg);
+}
+
+  .carousel-slide img{
+  height:100%;
+  width:auto;
+
+  display:block;
+
+  object-fit:cover;
+
+  pointer-events:none;
+}
+
+.get-involved-links{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+
+  padding:60px;
+  padding-top:20px;
+}
+
+.involved-link{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+
+  padding:0px 0px;
+
+  font-family:'Monument Grotesk', sans-serif;
+  font-size:20px;
+  font-weight:600;
+}
+
+
+
+  /* ---------- Stack cap ---------- */
+
+  .stack-cap{
+    width:calc(100% + 60px);
+    margin-left:-30px;
+
+    height:40px;
+  }
+}
