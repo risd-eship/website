@@ -366,9 +366,9 @@
     [...cards, cap];
 
 
-  const REVEAL_GAP = 28;
+  const REVEAL_GAP = 0;
 
-  const CAP_BASE = 56;
+  const CAP_BASE = 66;
 
 
   function peekHeight(){

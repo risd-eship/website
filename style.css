@@ -429,7 +429,7 @@ main{
   font-size:30px;
   font-weight:600;
 
-  letter-spacing:.04em;
+  letter-spacing:.01em;
 
   color:var(--c-fg);
 }
@@ -547,7 +547,7 @@ main{
   padding:0px 0px;
 
   font-family:'Monument Grotesk', sans-serif;
-  font-size:50px;
+  font-size:40px;
   font-weight:600;
 
   color:#f3f1e6;
